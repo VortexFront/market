@@ -226,7 +226,7 @@ export default function App() {
         };
       })
       .filter((item): item is WishlistItem => item !== null);
-  }, [wishlistIds]);
+  }, [wishlistIds, allProducts]); // ✅ Добавлен allProducts
 
   const handleAddToCart = (productId: number) => {
     const product = allProducts.find(p => p.id === productId);

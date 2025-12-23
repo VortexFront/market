@@ -35,22 +35,7 @@ export function Header({
   return (
     <header className="border-b bg-white sticky top-0 z-50 shadow-sm">
       {/* Top bar */}
-      <div className="bg-blue-600 text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">+7 (495) 123-45-67</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 text-sm">
-            <button className="hover:underline hidden md:inline">Доставка</button>
-            <button className="hover:underline hidden md:inline">Оплата</button>
-            <button className="hover:underline">Контакты</button>
-          </div>
-        </div>
-      </div>
-
+   
       {/* Main header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
