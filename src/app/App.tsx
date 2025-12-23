@@ -223,10 +223,10 @@ export default function App() {
           oldPrice: product.oldPrice,
           image: product.image,
           inStock: product.inStock,
-        };
+        } as WishlistItem;
       })
       .filter((item): item is WishlistItem => item !== null);
-  }, [wishlistIds, allProducts]); // ✅ Добавлен allProducts
+  }, [wishlistIds, allProducts]);
 
   const handleAddToCart = (productId: number) => {
     const product = allProducts.find(p => p.id === productId);
@@ -552,7 +552,7 @@ export default function App() {
         onSubmit={handleOrderSubmit}
       />
 
-      <Toaster position="top-right" richColors />
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 }
