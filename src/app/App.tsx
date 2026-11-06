@@ -8,7 +8,7 @@ import { Cart, CartItem } from './components/Cart';
 import { Wishlist, WishlistItem } from './components/Wishlist';
 import { MobileMenu } from './components/MobileMenu';
 import { Footer } from './components/Footer';
-import { Checkout, OrderData } from './components/Checkout';
+import { Checkout } from './components/Checkout';
 import { Button } from './components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './components/ui/select';
 import { ArrowRight } from 'lucide-react';
@@ -28,23 +28,19 @@ interface Product {
 const categories = [
   {
     title: 'Бумага и бумажная продукция',
-    image: 'https://images.unsplash.com/photo-1574330096374-a263e0a4b7f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMHByb2R1Y3RzJTIwd29ya3NwYWNlfGVufDF8fHx8MTc2NjEyMjgwMHww&ixlib=rb-4.1.0&q=80&w=1080',
-    productCount: 234,
+    image: `${import.meta.env.BASE_URL}illustrations/paper.svg`,
   },
   {
     title: 'Канцелярские товары',
-    image: 'https://images.unsplash.com/photo-1616964666162-31f61986d9aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBzdXBwbGllcyUyMHN0YXRpb25lcnl8ZW58MXx8fHwxNzY2MDcwODEwfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    productCount: 567,
+    image: `${import.meta.env.BASE_URL}illustrations/notebook.svg`,
   },
   {
     title: 'Ручки и карандаши',
-    image: 'https://images.unsplash.com/photo-1568650136602-ded24b86c5af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHBlbnMlMjBub3RlYm9va3N8ZW58MXx8fHwxNzY2MTIyNzk5fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    productCount: 189,
+    image: `${import.meta.env.BASE_URL}illustrations/pens.svg`,
   },
   {
     title: 'Школьные принадлежности',
-    image: 'https://images.unsplash.com/photo-1599652293152-e19873ad26a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBzdXBwbGllcyUyMGRlc2t8ZW58MXx8fHwxNzY2MTIyODAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    productCount: 432,
+    image: `${import.meta.env.BASE_URL}illustrations/school.svg`,
   },
 ];
 
@@ -54,7 +50,7 @@ const allProducts: Product[] = [
     name: 'Бумага офисная A4, 80г/м², 500 листов',
     price: 450,
     oldPrice: 550,
-    image: 'https://images.unsplash.com/photo-1574330096374-a263e0a4b7f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMHByb2R1Y3RzJTIwd29ya3NwYWNlfGVufDF8fHx8MTc2NjEyMjgwMHww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/paper.svg`,
     inStock: true,
     discount: 18,
     category: 'Бумага и бумажная продукция',
@@ -63,7 +59,7 @@ const allProducts: Product[] = [
     id: 2,
     name: 'Набор шариковых ручек, синие, 10 шт',
     price: 250,
-    image: 'https://images.unsplash.com/photo-1568650136602-ded24b86c5af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHBlbnMlMjBub3RlYm9va3N8ZW58MXx8fHwxNzY2MTIyNzk5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/pens.svg`,
     inStock: true,
     isNew: true,
     category: 'Канцелярские товары',
@@ -72,7 +68,7 @@ const allProducts: Product[] = [
     id: 3,
     name: 'Блокнот А5, 96 листов, клетка',
     price: 180,
-    image: 'https://images.unsplash.com/photo-1616964666162-31f61986d9aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBzdXBwbGllcyUyMHN0YXRpb25lcnl8ZW58MXx8fHwxNzY2MDcwODEwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/notebook.svg`,
     inStock: true,
     category: 'Канцелярские товары',
   },
@@ -80,7 +76,7 @@ const allProducts: Product[] = [
     id: 4,
     name: 'Папка-скоросшиватель пластиковая, А4',
     price: 95,
-    image: 'https://images.unsplash.com/photo-1599652293152-e19873ad26a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBzdXBwbGllcyUyMGRlc2t8ZW58MXx8fHwxNzY2MTIyODAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/school.svg`,
     inStock: true,
     category: 'Школьные принадлежности',
   },
@@ -89,7 +85,7 @@ const allProducts: Product[] = [
     name: 'Маркеры перманентные, набор 4 цвета',
     price: 320,
     oldPrice: 400,
-    image: 'https://images.unsplash.com/photo-1568650136602-ded24b86c5af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHBlbnMlMjBub3RlYm9va3N8ZW58MXx8fHwxNzY2MTIyNzk5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/pens.svg`,
     inStock: true,
     discount: 20,
     category: 'Канцелярские товары',
@@ -98,7 +94,7 @@ const allProducts: Product[] = [
     id: 6,
     name: 'Степлер металлический №24/6',
     price: 590,
-    image: 'https://images.unsplash.com/photo-1616964666162-31f61986d9aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBzdXBwbGllcyUyMHN0YXRpb25lcnl8ZW58MXx8fHwxNzY2MDcwODEwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/notebook.svg`,
     inStock: true,
     isNew: true,
     category: 'Офисная техника',
@@ -107,7 +103,7 @@ const allProducts: Product[] = [
     id: 7,
     name: 'Корректор ленточный, 5мм х 8м',
     price: 130,
-    image: 'https://images.unsplash.com/photo-1599652293152-e19873ad26a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBzdXBwbGllcyUyMGRlc2t8ZW58MXx8fHwxNzY2MTIyODAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/school.svg`,
     inStock: true,
     category: 'Школьные принадлежности',
   },
@@ -115,7 +111,7 @@ const allProducts: Product[] = [
     id: 8,
     name: 'Набор цветной бумаги А4, 16 листов',
     price: 85,
-    image: 'https://images.unsplash.com/photo-1574330096374-a263e0a4b7f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMHByb2R1Y3RzJTIwd29ya3NwYWNlfGVufDF8fHx8MTc2NjEyMjgwMHww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/paper.svg`,
     inStock: true,
     category: 'Бумага и бумажная продукция',
   },
@@ -124,7 +120,7 @@ const allProducts: Product[] = [
     name: 'Ножницы офисные 21 см',
     price: 280,
     oldPrice: 350,
-    image: 'https://images.unsplash.com/photo-1616964666162-31f61986d9aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBzdXBwbGllcyUyMHN0YXRpb25lcnl8ZW58MXx8fHwxNzY2MDcwODEwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/notebook.svg`,
     inStock: true,
     discount: 20,
     category: 'Канцелярские товары',
@@ -133,7 +129,7 @@ const allProducts: Product[] = [
     id: 10,
     name: 'Калькулятор настольный 12 разрядов',
     price: 1200,
-    image: 'https://images.unsplash.com/photo-1599652293152-e19873ad26a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2hvb2wlMjBzdXBwbGllcyUyMGRlc2t8ZW58MXx8fHwxNzY2MTIyODAwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/school.svg`,
     inStock: true,
     isNew: true,
     category: 'Офисная техника',
@@ -142,7 +138,7 @@ const allProducts: Product[] = [
     id: 11,
     name: 'Клей-карандаш 15г',
     price: 45,
-    image: 'https://images.unsplash.com/photo-1568650136602-ded24b86c5af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHBlbnMlMjBub3RlYm9va3N8ZW58MXx8fHwxNzY2MTIyNzk5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/pens.svg`,
     inStock: true,
     category: 'Школьные принадлежности',
   },
@@ -151,7 +147,7 @@ const allProducts: Product[] = [
     name: 'Тетрадь общая 96 листов',
     price: 120,
     oldPrice: 150,
-    image: 'https://images.unsplash.com/photo-1616964666162-31f61986d9aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBzdXBwbGllcyUyMHN0YXRpb25lcnl8ZW58MXx8fHwxNzY2MDcwODEwfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: `${import.meta.env.BASE_URL}illustrations/notebook.svg`,
     inStock: true,
     discount: 20,
     category: 'Школьные принадлежности',
@@ -309,18 +305,6 @@ export default function App() {
     }
   };
 
-  const handleOrderSubmit = (orderData: OrderData) => {
-    console.log('Order submitted:', orderData);
-    console.log('Cart items:', cartItems);
-    
-    toast.success('Заказ успешно оформлен!', {
-      description: 'Мы свяжемся с вами в ближайшее время',
-    });
-    
-    setCartItems([]);
-    setIsCheckoutOpen(false);
-  };
-
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const cartTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -332,6 +316,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <p id="demo-info" className="bg-blue-950 text-blue-50 px-4 py-2 text-center text-sm">
+        UI-демо вымышленного магазина · заказы, оплата и доставка не выполняются · контакты не собираются
+      </p>
       <Header
         cartCount={cartCount}
         wishlistCount={wishlistIds.length}
@@ -382,6 +369,7 @@ export default function App() {
                   <CategoryCard 
                     key={category.title} 
                     {...category} 
+                    productCount={allProducts.filter(product => product.category === category.title).length}
                     onClick={() => handleCategoryClick(category.title)}
                   />
                 ))}
@@ -519,7 +507,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer />
+      <Footer onCategoryClick={handleCategoryClick} />
 
       <Cart
         items={cartItems}
@@ -549,7 +537,6 @@ export default function App() {
         onClose={() => setIsCheckoutOpen(false)}
         items={cartItems}
         total={cartTotal}
-        onSubmit={handleOrderSubmit}
       />
 
       <Toaster position="bottom-right" richColors />
