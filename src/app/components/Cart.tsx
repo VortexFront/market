@@ -68,6 +68,7 @@ export function Cart({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem, o
                       <div className="flex items-center gap-2 border rounded">
                         <button
                           onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                          aria-label={`Уменьшить количество: ${item.name}`}
                           className="p-1 hover:bg-gray-100"
                         >
                           <Minus className="w-4 h-4" />
@@ -75,6 +76,7 @@ export function Cart({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem, o
                         <span className="px-2">{item.quantity}</span>
                         <button
                           onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                          aria-label={`Увеличить количество: ${item.name}`}
                           className="p-1 hover:bg-gray-100"
                         >
                           <Plus className="w-4 h-4" />
@@ -83,6 +85,7 @@ export function Cart({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem, o
 
                       <button
                         onClick={() => onRemoveItem(item.id)}
+                        aria-label={`Удалить из корзины: ${item.name}`}
                         className="p-1 hover:bg-gray-100 rounded text-red-500"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -105,7 +108,7 @@ export function Cart({ items, isOpen, onClose, onUpdateQuantity, onRemoveItem, o
               </div>
 
               <Button className="w-full" size="lg" onClick={handleCheckout}>
-                Оформить заказ
+                Посмотреть демо-оформление
               </Button>
 
               <Button variant="outline" className="w-full" onClick={onClose}>

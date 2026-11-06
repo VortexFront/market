@@ -31,7 +31,7 @@ export function ProductCard({
   onToggleWishlist,
 }: ProductCardProps) {
   return (
-    <div className="group relative bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
+    <article aria-label={name} className="group relative bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300">
       {/* Badges */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
         {isNew && (
@@ -44,10 +44,12 @@ export function ProductCard({
 
       {/* Wishlist button */}
       <button
-        className={`absolute top-2 right-2 z-10 p-2 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all ${
+        className={`absolute top-2 right-2 z-10 p-2 rounded-full shadow-md opacity-100 lg:opacity-0 lg:group-hover:opacity-100 focus-visible:opacity-100 transition-all ${
           isInWishlist ? 'bg-red-500 opacity-100' : 'bg-white hover:bg-gray-100'
         }`}
         onClick={() => onToggleWishlist(id)}
+        aria-label={`${isInWishlist ? 'Убрать из избранного' : 'В избранное'}: ${name}`}
+        aria-pressed={Boolean(isInWishlist)}
       >
         <Heart
           className={`w-5 h-5 ${
@@ -95,6 +97,6 @@ export function ProductCard({
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }

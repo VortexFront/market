@@ -44,6 +44,7 @@ export function Header({
             variant="ghost" 
             size="icon" 
             className="lg:hidden"
+            aria-label="Открыть меню"
             onClick={onMenuClick}
           >
             <Menu className="w-6 h-6" />
@@ -63,6 +64,7 @@ export function Header({
             <div className="relative w-full">
               <Input
                 type="search"
+                aria-label="Поиск товаров"
                 placeholder="Поиск товаров..."
                 className="w-full pr-10"
                 value={searchQuery}
@@ -74,6 +76,7 @@ export function Header({
                 className="absolute right-0 top-0 h-full"
                 variant="ghost"
                 onClick={onSearchSubmit}
+                aria-label="Выполнить поиск"
               >
                 <Search className="w-5 h-5" />
               </Button>
@@ -82,7 +85,7 @@ export function Header({
 
           {/* User actions */}
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
+            <Button variant="ghost" size="icon" className="hidden md:flex" disabled aria-label="Личный кабинет недоступен в UI-демо">
               <User className="w-5 h-5" />
             </Button>
             <Button 
@@ -90,6 +93,7 @@ export function Header({
               size="icon" 
               className="relative"
               onClick={onWishlistClick}
+              aria-label="Избранное"
             >
               <Heart className="w-5 h-5" />
               {wishlistCount > 0 && (
@@ -103,6 +107,7 @@ export function Header({
               size="icon" 
               className="relative"
               onClick={onCartClick}
+              aria-label="Корзина"
             >
               <ShoppingCart className="w-5 h-5" />
               {cartCount > 0 && (
@@ -119,6 +124,7 @@ export function Header({
           <div className="relative w-full">
             <Input
               type="search"
+              aria-label="Поиск товаров"
               placeholder="Поиск товаров..."
               className="w-full pr-10"
               value={searchQuery}
@@ -130,6 +136,7 @@ export function Header({
               className="absolute right-0 top-0 h-full"
               variant="ghost"
               onClick={onSearchSubmit}
+              aria-label="Выполнить поиск"
             >
               <Search className="w-5 h-5" />
             </Button>

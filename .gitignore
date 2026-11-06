@@ -38,3 +38,5 @@ tsconfig.temp.json
 
 # Assets generated
 src/assets/products/
+.test-results/
+playwright-report/
