@@ -54,10 +54,30 @@ test('mobile checkout has no contact fields, requests or false order success and
   await expect(dialog.getByRole('status')).toContainText('Это не подтверждение заказа');
   expect(mutations).toEqual([]);expect(logs.some(log=>log.includes('@example.invalid')||log.includes('Order submitted')||log.includes('Cart items'))).toBe(false);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  for(const name of ['Показать демо-сводку','Вернуться в магазин']){
+    const bounds=await dialog.getByRole('button',{name,exact:true}).boundingBox();
+    expect(bounds.height).toBeGreaterThanOrEqual(44);expect(bounds.y+bounds.height).toBeLessThanOrEqual(844);
+  }
+  const body=dialog.getByLabel('Прокручиваемая демо-сводка');
+  await body.evaluate(node=>{node.scrollTop=node.scrollHeight;});await expect(dialog.getByRole('status')).toBeInViewport();
   await page.getByText('Товар добавлен в корзину',{exact:true}).waitFor({state:'hidden'});
   await page.screenshot({path:info.outputPath('checkout-mobile.png'),animations:'disabled'});
   await page.keyboard.press('Escape');await page.getByRole('button',{name:'Корзина',exact:true}).click();await expect(page.getByRole('dialog')).toContainText('450 ₽');
   await page.getByRole('button',{name:'Посмотреть демо-оформление'}).click();dialog=page.getByRole('dialog',{name:'Демонстрация оформления'});
   await expect(dialog.getByRole('status')).toHaveCount(0);await expect.poll(()=>dialog.locator('dd').nth(1).innerText()).not.toBe(firstEmail);
   await dialog.getByRole('button',{name:'Вернуться в магазин'}).focus();await page.keyboard.press('Tab');expect(await dialog.evaluate(node=>node.contains(document.activeElement))).toBe(true);
+  await page.keyboard.press('Escape');await page.setViewportSize({width:390,height:600});
+  for(const card of (await page.getByRole('article').all()).slice(1,6))await card.getByRole('button',{name:'В корзину',exact:true}).click();
+  await page.getByRole('button',{name:'Корзина',exact:true}).click();await page.getByRole('button',{name:'Посмотреть демо-оформление'}).click();
+  dialog=page.getByRole('dialog',{name:'Демонстрация оформления'});
+  const longBody=dialog.getByLabel('Прокручиваемая демо-сводка');expect(await longBody.evaluate(node=>node.scrollHeight>node.clientHeight)).toBe(true);
+  const dimensions=[];
+  for(const name of ['Показать демо-сводку','Вернуться в магазин']){
+    const bounds=await dialog.getByRole('button',{name,exact:true}).boundingBox();dimensions.push({name,...bounds});
+    expect(bounds.height).toBeGreaterThanOrEqual(44);expect(bounds.y+bounds.height).toBeLessThanOrEqual(600);
+  }
+  await dialog.getByRole('button',{name:'Показать демо-сводку'}).click();await longBody.evaluate(node=>{node.scrollTop=node.scrollHeight;});
+  await expect(dialog.getByRole('status')).toBeInViewport();
+  await info.attach('long-cart-button-dimensions',{body:JSON.stringify(dimensions),contentType:'application/json'});
+  await dialog.getByRole('button',{name:'Вернуться в магазин'}).click();await expect(dialog).not.toBeVisible();
 });

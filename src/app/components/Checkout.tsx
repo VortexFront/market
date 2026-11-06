@@ -14,14 +14,15 @@ export function Checkout({ isOpen, onClose, items, total }: CheckoutProps) {
   }, [isOpen]);
   return (
     <Dialog open={isOpen} onOpenChange={(open) => { if (!open) onClose(); }}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
+      <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+        <DialogHeader className="shrink-0">
           <DialogTitle>Демонстрация оформления</DialogTitle>
           <DialogDescription>
             Это UI-демо. Заказ не создаётся и никуда не отправляется. Контакты вводить не нужно:
             ниже автоматически сгенерированы вымышленные данные. Оплаты и доставки нет.
           </DialogDescription>
         </DialogHeader>
+        <div className="min-h-0 overflow-y-auto space-y-6 pr-1" aria-label="Прокручиваемая демо-сводка" tabIndex={0}>
         <section className="border rounded-lg p-4 bg-gray-50" aria-label="Состав демо-покупки">
           <h3 className="mb-3">Демо-корзина</h3>
           <ul className="space-y-2 mb-4">
@@ -44,9 +45,10 @@ export function Checkout({ isOpen, onClose, items, total }: CheckoutProps) {
           Демо-сводка {customer.reference}: {items.reduce((sum, item) => sum + item.quantity, 0)} шт. на {total} ₽.
           Ничего не отправлено. Это не подтверждение заказа. Корзина сохранена до перезагрузки страницы.
         </p>}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button type="button" className="flex-1" size="lg" disabled={!items.length} onClick={() => setShowSummary(true)}>Показать демо-сводку</Button>
-          <Button type="button" variant="outline" onClick={onClose}>Вернуться в магазин</Button>
+        </div>
+        <div className="shrink-0 flex flex-col sm:flex-row gap-3">
+          <Button type="button" className="w-full min-h-11 shrink-0 sm:flex-1" size="lg" disabled={!items.length} onClick={() => setShowSummary(true)}>Показать демо-сводку</Button>
+          <Button type="button" className="min-h-11 shrink-0" variant="outline" onClick={onClose}>Вернуться в магазин</Button>
         </div>
       </DialogContent>
     </Dialog>
